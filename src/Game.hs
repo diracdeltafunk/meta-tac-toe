@@ -1,6 +1,6 @@
 {-# LANGUAGE TypeSynonymInstances, FlexibleInstances, OverlappingInstances #-}
 
-module Game where
+module Game (Mark(..), Sector(..), claimed, newGame, move, go, legal, full) where
 
 import Control.Applicative
 import Control.Monad.State.Lazy
@@ -58,7 +58,19 @@ type Move = State Board Sector
 newGame :: Board
 newGame = MapL.fromList $ flip (,) MapL.empty <$> sectors
 
+legal :: Sector -> Board -> Sector -> Bool
+legal = (flip MapL.notMember .) . flip (MapL.!)
+
+subFull :: SubBoard -> Bool
+subFull = flip all sectors . flip MapL.member
+
+full :: Board -> Bool
+full = MapL.foldr (&&) True . (MapL.map subFull)
+
 move :: Mark -> Coord -> Move
 move mark (superSector, subSector) = do s <- get
                                         put $ MapL.adjust (MapL.insert subSector mark) superSector $ s
                                         return subSector
+
+go :: Move -> Board -> (Sector, Board)
+go = runState
