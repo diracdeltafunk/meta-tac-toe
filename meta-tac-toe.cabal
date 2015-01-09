@@ -1,7 +1,6 @@
 name:                meta-tac-toe
 version:             0.1.0.0
 synopsis:            A haskell implementation of an "ultimate tic tac toe" AI.
-description:         A haskell implementation of an "ultimate tic tac toe" AI.
 homepage:            benspitz.com
 license:             MIT
 license-file:        LICENSE
@@ -10,13 +9,13 @@ maintainer:          benespitz@gmail.com
 copyright:           2014, Ben Spitz
 category:            Game
 build-type:          Simple
-cabal-version:       >=1.10
+cabal-version:       >=1.22
 
 executable meta-tac-toe
   ghc-options:         -O2 -Wall -fwarn-tabs
   hs-source-dirs:      src
   main-is:             Main.hs
-  build-depends:       base >= 4.6.0.1 && < 5,
+  build-depends:       base >= 4.7.0.2 && < 5,
                        containers >= 0.5,
                        mtl >= 2.2.1,
                        split >= 0.2.2

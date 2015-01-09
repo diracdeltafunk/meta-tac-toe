@@ -1,6 +1,6 @@
 {-# LANGUAGE TypeSynonymInstances, FlexibleInstances, OverlappingInstances #-}
 
-module Game (Mark(..), Sector(..), claimed, newGame, move, go, legal, full) where
+module Game (Mark(..), Sector(..), other, claimed, newGame, move, go, legal, full) where
 
 import Control.Applicative
 import Control.Monad.State.Lazy
@@ -10,6 +10,10 @@ import Data.Maybe (fromMaybe)
 import qualified Data.Map.Lazy as MapL
 
 data Mark = X | O deriving (Eq, Show, Read)
+
+other :: Mark -> Mark
+other X = O
+other O = X
 
 type Claim = [Mark]
 

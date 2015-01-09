@@ -23,7 +23,7 @@ main = do
                                                            putStrLn "New Board State:"
                                                            print b
                                                            case claimed b of
-                                                               []     -> if full b then putStrLn "NOBODY WINS!" else makeMove (if mark == X then O else X) newBoard
+                                                               []     -> if full b then putStrLn "NOBODY WINS!" else makeMove (other mark) newBoard
                                                                (m:[]) -> putStrLn $ (show m) ++ " WINS!"
                                                                _      -> putStrLn "EVERYONE WINS!"
                                                    else do putStrLn "Illegal Move!"
